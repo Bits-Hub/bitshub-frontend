@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "@/lib/assets/globals.css";
 import NextTopLoader from "nextjs-toploader";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "sonner";
 import "react-toastify/dist/ReactToastify.css";
+import AppProvider from "@/redux/provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,8 +40,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body className={`${inter.variable} ${pjs.variable}`} suppressHydrationWarning={true}>
         <NextTopLoader color="#FF6709" showSpinner={false} />
-        <ToastContainer position="bottom-center" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
-        {children}
+        <Toaster position='top-right' richColors closeButton />
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
     </html>
   );
