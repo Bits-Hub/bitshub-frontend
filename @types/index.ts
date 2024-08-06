@@ -11,4 +11,5 @@ export type CategoryProps =  {
 
   export type ProductCardProps = {
     img: string;
+    productName?: string;
   };
