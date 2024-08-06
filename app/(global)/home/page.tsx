@@ -19,20 +19,20 @@ export default function Home() {
       </div>
 
       <div className="container pb-16">
-        <p className="text-2xl font-medium text-gray-800 uppercase mb-6">
+        <p className="text-xl font-medium text-gray-800 uppercase mb-6">
           shop by category
         </p>
         <Categories />
       </div>
       <div className="container pb-16">
-        <p className="text-2xl font-medium text-gray-800 uppercase mb-6">
+        <p className="text-xl font-medium text-gray-800 uppercase mb-6">
           Recommended for You
         </p>
         <Products />
       </div>
       <Ad />
       <div className="container pb-16">
-        <p className="text-2xl font-medium text-gray-800 uppercase mb-6">
+        <p className="text-xl font-medium text-gray-800 uppercase mb-6">
           Top New Arrival
         </p>
         <NewArrivals />
@@ -40,14 +40,14 @@ export default function Home() {
 
       <Ad />
       <div className="container pb-16">
-        <p className="text-2xl font-medium text-gray-800 uppercase mb-6">
+        <p className="text-xl font-medium text-gray-800 uppercase mb-6">
           Accessories
         </p>
         <Accessories />
       </div>
 
       <div className="container pb-16">
-        <p className="text-2xl font-medium text-gray-800 uppercase mb-6">
+        <p className="text-xl font-medium text-gray-800 uppercase mb-6">
           Product Electronics
         </p>
         <Electronics />
