@@ -1,23 +1,31 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import React from "react";
+import { CategoryItemProps, CategoryProps } from "@/@types";
 
-export default function CategoryCard(
-    // props here
-) {
+const CategoryItem: React.FC<CategoryItemProps> = ({ name, icon, index }) => {
   return (
-    <div className="relative rounded-sm overflow-hidden group">
-    <Link href={''
-        // `/category/${item.category}`
-        }>
-      {/* <Image src={item.img_url} alt="" className="w-full h-[100%] object-cover" /> */}
-      <p
-        className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-50 transition"
-      >
-        {/* {item.category} */}
-        item category
-      </p>
-    </Link>
-  </div>
-  )
-}
+    <div
+      className={`flex flex-col items-center space-y-4 p-4 border-orange-100 ${index == 1 ? "border-b" : index == 2 ? "border-t" : index == 3 ? "border-l" : "border-r"}`}
+    >
+      <img src={icon} alt={name} className="w-16 h-16" />
+      <span className="text-md text-slate-500 font-[400]">{name}</span>
+    </div>
+  );
+};
+
+const CategoryCard: React.FC<CategoryProps> = ({ title, items }) => {
+  return (
+    <div className="border p-4 rounded-lg">
+      <h2 className="text-xl text-orange-500 font-[500] mb-4">{title}</h2>
+      <div className="grid grid-cols-2">
+        {items.map((item, i) => (
+          <CategoryItem key={i} index={i} name={item.name} icon={item.icon} />
+        ))}
+      </div>
+      <a href="#" className="text-orange-500 mt-4 inline-block">
+        Shop now →
+      </a>
+    </div>
+  );
+};
+
+export default CategoryCard;

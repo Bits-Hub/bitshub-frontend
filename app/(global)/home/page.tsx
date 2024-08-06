@@ -1,17 +1,18 @@
-import Ad from '@/components/molecules/ad'
-import Banner from '@/components/molecules/banner'
-import Categories from '@/components/molecules/categories'
-import Features from '@/components/molecules/features'
-import NewArrivals from '@/components/molecules/newArrivals'
-import Products from '@/components/molecules/products'
-import Accessories from '@/components/molecules/products/accessories'
-import Electronics from '@/components/molecules/products/electronics'
-import React from 'react'
+import Ad from "@/components/molecules/ad";
+import Banner from "@/components/molecules/banner";
+import Categories from "@/components/molecules/categories";
+import Features from "@/components/molecules/features";
+import NewArrivals from "@/components/molecules/newArrivals";
+import Products from "@/components/molecules/products";
+import Accessories from "@/components/molecules/products/accessories";
+import Electronics from "@/components/molecules/products/electronics";
+import Promotion from "@/components/molecules/promotion";
+import React from "react";
 
 export default function Home() {
-    // products, accessories, new arrivals, electronics could be one card that just needs a different prop passed to it
+  // products, accessories, new arrivals, electronics could be one card that just needs a different prop passed to it
   return (
-    <div className="px-[16vw]">
+    <div className="lg:px-[16vw]">
       <Banner />
       <div className="container py-16">
         <Features />
@@ -51,6 +52,10 @@ export default function Home() {
         </p>
         <Electronics />
       </div>
+
+      <div>
+        <Promotion />
+      </div>
     </div>
-  )
+  );
 }

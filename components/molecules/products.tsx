@@ -1,12 +1,23 @@
 "use client";
 
-import React, { useState } from 'react'
-import ProductCard from './cards/productCard';
+import React, { useState } from "react";
+import ProductCard from "./cards/productCard";
 
 export default function Products() {
-    const [refreshPage, setRefreshPage] = useState(false);
+  const [refreshPage, setRefreshPage] = useState(false);
+  const images = [
+    "/images/products/iphone12.jpg",
+    "/images/products/iphone12.jpg",
+    "/images/products/iphone15.jpg",
+    "/images/products/infinix.jpg",
+  ];
   return (
     <div>
+      <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-2 grid-cols-1">
+        {images.map((img, i) => (
+          <ProductCard key={i} img={img} />
+        ))}
+      </div>
       {/* {
         false
     //   loading
@@ -30,5 +41,5 @@ export default function Products() {
         </div>
       )} */}
     </div>
-  )
+  );
 }
