@@ -3,7 +3,7 @@ import React from "react";
 import Rating from "./rating";
 import { Button } from "@/components/atoms/ui/button";
 import { ProductCardProps } from "@/@types";
-
+import Image from "next/image";
 export default function ProductCard({ img }: ProductCardProps) {
   // props
   // const product = { id: item.id, quantity: 1 };
@@ -12,7 +12,13 @@ export default function ProductCard({ img }: ProductCardProps) {
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="h-48 w-full">
           <a href="#">
-            <img className="mx-auto h-full" src={img} alt="" />
+            <Image
+              width={200}
+              height={200}
+              className="mx-auto h-full"
+              src={img}
+              alt="this is a product"
+            />
           </a>
         </div>
         <div className="pt-6">
@@ -98,7 +104,7 @@ export default function ProductCard({ img }: ProductCardProps) {
             href="#"
             className="text-lg font-[500] leading-tight text-gray-900 hover:underline dark:text-white"
           >
-            Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max
+            Apple iMac 27&quot;, 1TB HDD, Retina 5K Display, M3 Max
           </a>
 
           <div className="mt-1 flex items-center gap-2">

@@ -1,6 +1,6 @@
 import { footerLinks } from "@/lib/data/footer";
 import Link from "next/link";
-
+import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="bg-white antialiased dark:bg-gray-800">
@@ -237,12 +237,16 @@ export default function Footer() {
         <div className="py-6 md:py-8">
           <div className="gap-4 space-y-5 xl:flex xl:items-center xl:justify-between xl:space-y-0">
             <a href="#" title="" className="block">
-              <img
+              <Image
+                height={16}
+                width={200}
                 className="block h-8 w-auto dark:hidden"
                 src="/images/bitshub.png"
-                alt=""
+                alt="bitshub"
               />
-              <img
+              <Image
+                height={16}
+                width={200}
                 className="hidden h-8 w-auto dark:block"
                 src="/images/bitshub.png"
                 alt=""

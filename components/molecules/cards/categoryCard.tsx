@@ -1,12 +1,18 @@
 import React from "react";
 import { CategoryItemProps, CategoryProps } from "@/@types";
-
+import Image from "next/image";
 const CategoryItem: React.FC<CategoryItemProps> = ({ name, icon, index }) => {
   return (
     <div
       className={`flex flex-col items-center space-y-4 p-4 border-orange-100 ${index == 1 ? "border-b" : index == 2 ? "border-t" : index == 3 ? "border-l" : "border-r"}`}
     >
-      <img src={icon} alt={name} className="w-16 h-16" />
+      <Image
+        width={50}
+        height={50}
+        src={icon}
+        alt={name}
+        className="w-16 h-16"
+      />
       <span className="text-md text-slate-500 font-[400]">{name}</span>
     </div>
   );
