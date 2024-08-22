@@ -3,6 +3,8 @@ import Navbar from "./navbar";
 import TopBar from "./topBar";
 import Image from "next/image";
 import { Input } from "@/components/atoms/ui/input";
+import { HeartIcon, UserIcon } from "@heroicons/react/24/outline";
+import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 
 export default function Header() {
   return (
@@ -36,28 +38,28 @@ export default function Header() {
                             </div>
                         )} */}
           </div>
-          <div className="flex items-center space-x-4 ml-3 ">
+          <div className="flex items-center space-x-5">
             {/* these were commented out in the old code */}
-            {/* <Link
-              to="/account/wishlist"
-              className="text-center text-gray-700 hover:text-primary transition relative"
+            <Link
+              href="/wishlist"
+              className="text-center text-gray-700 hover:text-primary group transition relative"
             >
               <div className="text-xl md:text-2xl">
-                <i className="far fa-heart"></i>
+                <HeartIcon className="size-7 text-secondary group-hover:text-primary" />
               </div>
               <div className="hidden md:block text-xs leading-3">Wish list</div>
-              {wishlist?.data?.length > 0 && (
+              {/* {wishlist?.data?.length > 0 && (
                 <span className="absolute -right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
                   {wishlist?.data?.length}
                 </span>
-              )}
-            </Link> */}
+              )} */}
+            </Link>
             <Link
               href="/login?redirect=/cart/:id"
-              className="text-center text-gray-700 hover:text-primary transition relative"
+              className="text-center text-gray-700 hover:text-primary group transition relative"
             >
               <div className="text-xl md:text-2xl">
-                <i className="fas fa-shopping-bag"></i>
+                <ShoppingCartIcon className="size-7 text-secondary group-hover:text-primary"/>
               </div>
               <div className="hidden md:block text-xs leading-3">Cart</div>
               {/* be stuff */}
@@ -68,12 +70,14 @@ export default function Header() {
                             )} */}
             </Link>
             <div className="cursor-pointer relative group">
-              <div className="text-center text-gray-700 hover:text-primary transition relative">
+              <div className="text-center text-gray-700 hover:text-primary group transition relative">
                 <p className="text-xl md:text-2xl">
-                  <i className="far fa-user"></i>
+                <UserIcon className="size-7 text-secondary group-hover:text-primary" />
                 </p>
                 <p className="hidden md:block text-xs leading-3">
                   {/* {userInfo?.name || "Account"} */}
+                  {/* todo: update this to show user name */}
+                  Account
                 </p>
               </div>
               <div className="absolute w-[15rem] right-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-50">
@@ -84,14 +88,14 @@ export default function Header() {
                                 )} */}
 
                 <Link
-                  href="/account_"
+                  href="/manage-account"
                   className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
                 >
-                  <i className="far fa-user"></i>
+                  <UserIcon className="size-5 text-secondary" />
                   <span className="ml-6 text-gray-600 text-sm">My Account</span>
                 </Link>
                 <Link
-                  href="/account/order-history"
+                  href="/order-history"
                   className="flex items-center px-6 py-3 hover:bg-gray-100 transition"
                 >
                   <Image

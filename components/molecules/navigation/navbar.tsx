@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
   const categories = [
@@ -58,7 +59,7 @@ export default function Navbar() {
       <div className="container flex">
         <div className="px-8 py-4 bg-primary flex items-center cursor-pointer relative group min-w-56">
           <span className="text-white">
-            <i className="fas fa-bars"></i>
+          <Bars3Icon className="h-6 w-6 text-white" />
           </span>
           <span className="capitalize ml-2 text-white">All categories</span>
           <div className="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-50">

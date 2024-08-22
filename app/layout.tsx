@@ -3,7 +3,6 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "@/lib/assets/globals.css";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
-import "react-toastify/dist/ReactToastify.css";
 import AppProvider from "@/redux/provider";
 
 const inter = Inter({
