@@ -6,7 +6,7 @@ export const authApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation({
             query: (payload) => ({
-                url: "/login",
+                url: "/auth/login",
                 method: "POST",
                 body: payload,
             }),
@@ -16,13 +16,35 @@ export const authApi = baseApi.injectEndpoints({
                     const {
                       data: { data },
                     } = result;
-                    Cookies.set("token", data.token);
+                    console.log(data)
+                    Cookies.set("token", data.accessToken);
                     dispatch(setAuthUser(data));
                   } catch (error: any) {
-                    // console.log(error)
+                    console.log(error)
                   }
             },
-        })
+        }),
+        signUp: builder.mutation({
+          query: (payload) => ({
+              url: "/auth",
+              method: "POST",
+              body: payload,
+          }),
+          async onQueryStarted(arg, {queryFulfilled, dispatch}) {
+              try {
+                  const result = await queryFulfilled;
+                  const {
+                    data: { data },
+                  } = result;
+                  Cookies.set("token", data.token);
+                  dispatch(setAuthUser(data));
+                } catch (error: any) {
+                  // console.log(error)
+                }
+          }
+      }),
         // the rest of the endpoints relating to auth wil go here.
     })
 })
+
+export const { useLoginMutation, useSignUpMutation } = authApi;
