@@ -23,7 +23,7 @@ import { resetAuth } from "../features/auth/authSlice";
   };
 
   export const baseQuery = fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_BACKEND_URL,
+    baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       let accessToken: string = Cookies.get("token") || "";
       if (accessToken) {
@@ -107,8 +107,6 @@ export const baseApi = createApi({
     endpoints: () => ({}),
     reducerPath: "baseApi",
     tagTypes: [
-        // Tag types allow you to add tags to your endpoints, and retrieve a list of all endpoints with a given tag
-        // all tentative for now
         "User",
         "Auth",
         "Product",

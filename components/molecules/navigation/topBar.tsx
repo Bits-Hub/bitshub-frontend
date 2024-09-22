@@ -1,6 +1,12 @@
-import Link from "next/link";
+"use client";
+
+import { RootState } from "@/redux/features/root-reducer";
+import Link from "next/link"; 
+import { useSelector } from "react-redux";
 
 export default function TopBar() {
+    const authState = useSelector((state: RootState) => state.auth);
+    //should be authState.active
     return (
         <div className="hidden md:block border-b border-gray-200 md:px-[16vw]">
             <div className="px-6 container flex justify-between items-center py-3 text-gray-600">
@@ -13,13 +19,13 @@ export default function TopBar() {
                     official@bitshub.co
                 </a>
                 <div className="flex items-center justify-center gap-8">
-                    <a
-                        href="/login?redirect=/dashboard"
+                    <Link
+                        href={authState.id ? "/dashboard" : "/login"}
                         rel="noopener noreferrer external"
                         className="text-sm hover:text-primary transition"
                     >
                         Become a vendor
-                    </a>
+                    </Link>
                     <Link
                         href="/track-order"
                         className="text-sm hover:text-primary transition"

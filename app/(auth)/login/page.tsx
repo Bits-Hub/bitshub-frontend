@@ -34,7 +34,7 @@ export default function Login() {
   console.log('here')
 
   const onSubmit = async (data: LoginType) => {
-    // change this loading toasts to a loading spinner in the button
+    //todo:  change this loading toasts to a loading spinner in the button
     toast.loading("Logging in...");
     const parsedData = LoginSchema.parse(data);
     const { rememberMe, ...dataToSend } = parsedData;
