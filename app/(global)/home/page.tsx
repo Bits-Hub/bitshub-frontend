@@ -12,7 +12,7 @@ import React from "react";
 export default function Home() {
   // products, accessories, new arrivals, electronics could be one card that just needs a different prop passed to it
   return (
-    <div className="lg:px-[16vw]">
+    <div className="lg:mx-32">
       <Banner />
       <div className="container py-16">
         <Features />

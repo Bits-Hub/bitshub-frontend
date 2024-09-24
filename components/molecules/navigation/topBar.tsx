@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function TopBar() {
     return (
-        <div className="hidden md:block border-b border-gray-200 md:px-[16vw]">
+        <div className="hidden md:block border-b border-gray-200 lg:mx-32">
             <div className="px-6 container flex justify-between items-center py-3 text-gray-600">
                 <a
                     href="mailto:official@bitshub.co"

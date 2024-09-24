@@ -55,7 +55,7 @@ export default function Navbar() {
     },
   ];
   return (
-    <nav className="bg-gray-800 hidden md:block md:px-[16vw]">
+    <nav className="bg-gray-800 hidden md:block lg:mx-32">
       <div className="container flex">
         <div className="px-8 py-4 bg-primary flex items-center cursor-pointer relative group min-w-56">
           <span className="text-white">
