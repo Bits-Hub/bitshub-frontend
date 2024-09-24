@@ -8,7 +8,7 @@ export default function TopBar() {
     const authState = useSelector((state: RootState) => state.auth);
     //should be authState.active
     return (
-        <div className="hidden md:block border-b border-gray-200 md:px-[16vw]">
+        <div className="hidden md:block border-b border-gray-200 lg:mx-32">
             <div className="px-6 container flex justify-between items-center py-3 text-gray-600">
                 <a
                     href="mailto:official@bitshub.co"

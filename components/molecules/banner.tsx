@@ -13,6 +13,16 @@ import Link from 'next/link';
 // import { Pagination, Navigation, Autoplay, EffectFlip } from "swiper";
 
 export default function Banner() {
+  const backgroundStyle = {
+    backgroundImage: "url(/images/img-13.webp)",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    height: "70vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
     return (
         <div>
             {/* <Swiper
@@ -28,10 +38,7 @@ export default function Banner() {
             > */}
                 {/* <SwiperSlide> */}
                     <div
-                        className="bg-cover bg-no-repeat bg-center h-[100%] lg:h-[100%] justify-center items-center pt-48"
-                        style={{
-                            backgroundImage: "url(/assets/img-13.webp)",
-                        }}
+                        style={backgroundStyle}
                     >
                         <div className="container">
                             <h1 className="text-6xl text-gray-800 font-medium mb-4 capitalize">

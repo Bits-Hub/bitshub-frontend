@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <div>
       <TopBar />
-      <div className="py-4 shadow-sm bg-white md:px-[38vh]">
+      <div className="py-4 shadow-sm bg-white lg:mx-32">
         <div className="container flex items-center justify-between ">
           <Link href="/home">
             <Image
