@@ -56,6 +56,15 @@ export const productCategoryApi = baseApi.injectEndpoints({
             },
             providesTags: ['Category'],
          }),
+
+        //  getElectronics: builder.query({
+        //     query:() =>({
+        //         url:"/electronics",
+        //         method:"GET"
+        //     }),
+        //     providesTags:['Electronics'],
+
+        //  })
     })
 })
 

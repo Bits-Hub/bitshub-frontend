@@ -1,62 +1,85 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import ProductCard from '../cards/productCard';
+import React from "react";
+import { useGetCategoryQuery } from "@/redux/services/product/category/categoryApi"; // Adjust the path to your actual API
+import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper and SwiperSlide
+import { Navigation, Pagination } from 'swiper/modules';
+// import Swiper and modules styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export default function Electronics() {
-    const [products, setProducts] = useState([]);  // State to hold product data
-    const [loading, setLoading] = useState(true);  // Loading state
+  const { data: response, error, isLoading } = useGetCategoryQuery(null); // No argument needed for fetching all categories
 
-    // Fetch product data from API
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch("https://api.example.com/products"); // Replace with your actual API URL
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                setProducts(data);  // Assuming the API returns an array of products
-                setLoading(false);  // Set loading to false after fetching
-            } catch (e) {
-                console.error("Error fetching products", e);
-                setLoading(false);  // Set loading to false if there's an error
-            }
-        };
-        fetchProducts();
-    }, []);  // Empty dependency array means this effect runs once when the component mounts
+  // Handle loading state
+  if (isLoading) {
+    return <p>Loading categories...</p>;
+  }
 
-    const slideLeft = () => {
-        let slide = document.getElementById("slide");
-        // slide.scrollLeft -= 500;  // Slide left
-    };
+  // Handle error state
+  if (error) {
+    let errorMessage: string = "Unknown error occurred";
 
-    const slideRight = () => {
-        let slide = document.getElementById("slide");
-        // slide.scrollLeft += 500;  // Slide right
-    };
+    if ("status" in error) {
+      errorMessage = `Error: ${error.status}`;
+    } else if ("message" in error) {
+      errorMessage = error.message ?? "Error occurred with no message";
+    }
 
-    return (
-        <div>
-            <div className="w-full relative">
-                <h2 className='text-xl font-bold'>Electronics</h2>
+    return <p>{errorMessage}</p>;
+  }
 
-                {/* If loading, show a loading message, otherwise show the products */}
-                {loading ? (
-                    <p>Loading products...</p>
-                ) : (
-                    <div id="slide" className="flex items-center overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide">
-                        <div className="flex gap-4">
-                            {/* {products.map((item) => (
-                                // <ProductCard item={item} key={item.id} />
-                            ))} */}
-                        </div>
-                    </div>
-                )}
+  // Log the categories response to check its structure
+  console.log("Categories response:", response);
 
-                {/* Optional scroll buttons */}
-                {/* <MdChevronLeft size={40} className="absolute cursor-pointer -left-14 bottom-32 opacity-50 hover:opacity-100" onClick={slideLeft} /> */}
-                {/* <MdChevronRight size={40} className="absolute cursor-pointer -right-14 bottom-32 opacity-50 hover:opacity-100" onClick={slideRight} /> */}
+  // Access the categories array from the response
+  const categories = response?.data || []; // Adjust based on the actual structure returned from the API
+
+  // If categories is not an array or is empty, return an error message
+  if (!Array.isArray(categories) || categories.length === 0) {
+    return <p>No categories available!</p>;
+  }
+
+  // Define your base URL for images
+  const baseURL = 'https://api.bitshub.africa/v1/dev'; // Replace with your actual base URL
+
+  return (
+    <Swiper
+      navigation
+      pagination
+      modules={[Navigation, Pagination]}
+      className="mySwiper"
+      slidesPerView={3} // Set the number of slides to show at once
+      spaceBetween={30} // Optional: Adjust the space between slides
+      breakpoints={{
+        640: {
+          slidesPerView: 2, // Show 2 slides on small screens
+        },
+        768: {
+          slidesPerView: 3, // Show 3 slides on medium screens
+        },
+        1024: {
+          slidesPerView: 4, // Show 4 slides on larger screens
+        },
+      }}
+    >
+      {categories.map((category) => {
+        // Construct the full image URL
+        const imgUrl = `${baseURL}${category.img_url}`; // Combine base URL with the image path
+
+        return (
+          <SwiperSlide key={category.id}>
+            <div className="category-card p-4 border rounded-lg shadow-lg">
+              <img
+                src={imgUrl} // Use the constructed URL for the image
+                alt={category.category} // Use the correct field for category title
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+              <h3 className="text-lg font-semibold mt-4">{category.category}</h3> {/* Use the correct field for title */}
             </div>
-        </div>
-    );
+          </SwiperSlide>
+        );
+      })}
+    </Swiper>
+  );
 }

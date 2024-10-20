@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import Navbar from "./navbar";
 import TopBar from "./topBar";
@@ -5,8 +6,16 @@ import Image from "next/image";
 import { Input } from "@/components/atoms/ui/input";
 import { HeartIcon, UserIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/features/root-reducer";
+
+
 
 export default function Header() {
+
+  const userInfo = useSelector((state: RootState) => state.auth);
+  console.log(userInfo);
+
   return (
     <div>
       <TopBar />

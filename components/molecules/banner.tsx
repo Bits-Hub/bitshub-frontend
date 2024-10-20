@@ -47,7 +47,7 @@ export default function Banner() {
                             </h1>
                             <p className='text-gray-200 text-sm'>
                             Explore our top-rated selection of high-performance and, {" "}
-                                <br /> long-lasting computers, designed to meet your every need.
+                                <br /> long-lasting computers.
                             </p>
                             <div className="mt-12 ">
                                 <Link
