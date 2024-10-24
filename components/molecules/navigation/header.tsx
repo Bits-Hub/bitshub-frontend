@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Navbar from "./navbar";
 import TopBar from "./topBar";
@@ -5,8 +7,12 @@ import Image from "next/image";
 import { Input } from "@/components/atoms/ui/input";
 import { HeartIcon, UserIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/features/root-reducer";
 
 export default function Header() {
+  const userInfo = useSelector((state: RootState) => state.auth);
+  console.log(userInfo);
   return (
     <div>
       <TopBar />
@@ -59,7 +65,7 @@ export default function Header() {
               className="text-center text-gray-700 hover:text-primary group transition relative"
             >
               <div className="text-xl md:text-2xl">
-                <ShoppingCartIcon className="size-7 text-secondary group-hover:text-primary"/>
+                <ShoppingCartIcon className="size-7 text-secondary group-hover:text-primary" />
               </div>
               <div className="hidden md:block text-xs leading-3">Cart</div>
               {/* be stuff */}
@@ -72,7 +78,7 @@ export default function Header() {
             <div className="cursor-pointer relative group">
               <div className="text-center text-gray-700 hover:text-primary group transition relative">
                 <p className="text-xl md:text-2xl">
-                <UserIcon className="size-7 text-secondary group-hover:text-primary" />
+                  <UserIcon className="size-7 text-secondary group-hover:text-primary" />
                 </p>
                 <p className="hidden md:block text-xs leading-3">
                   {/* {userInfo?.name || "Account"} */}
@@ -127,11 +133,13 @@ export default function Header() {
                     className="w-5 h-5 object-contain text-color-red"
                   />
                   <span className="ml-6 text-gray-600 text-sm">
-                    {/* {userInfo ? (
-                                            <span onClick={signoutHandler}>Sign Out</span>
-                                        ) : (
-                                            <Link href="/login">Sign In</Link>
-                                        )} */}
+                    {userInfo ? (
+                      <span onClick={()=> {
+                        // todo: handle logout
+                      }}>Sign Out</span>
+                    ) : (
+                      <Link href="/login">Sign In</Link>
+                    )}
                   </span>
                 </div>
               </div>
