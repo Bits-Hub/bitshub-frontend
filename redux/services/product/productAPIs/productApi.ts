@@ -40,8 +40,8 @@ export const productApi = baseApi.injectEndpoints({
             invalidatesTags: ['Product'],
          }),
          getProductsForBuyers: builder.query({
-            query: ({query}) => ({
-                url: `/product/search?search_string=${query}`,
+            query: () => ({
+                url: `/product`,
                 method: "GET"
             }),
             async onQueryStarted(arg, {queryFulfilled, dispatch}) {
@@ -92,8 +92,8 @@ export const productApi = baseApi.injectEndpoints({
                 // todo: should have a seperate tags of all products
             }),
             getSingleProductForBuyer: builder.query({
-                query: ({id}) => ({
-                    url: `/product?slug=${id}`,
+                query: (id) => ({
+                    url: `/product?id=${id}`,
                     method: "GET"
                 }),
                 async onQueryStarted(arg, {queryFulfilled, dispatch}) {

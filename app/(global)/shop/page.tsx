@@ -1,6 +1,9 @@
 "use client";
 
+import { Product } from '@/@types';
+import ProductCard from '@/components/molecules/cards/productCard';
 import Filter from '@/components/molecules/filter';
+import { useGetProductsForBuyersQuery } from '@/redux/services/product/productAPIs/productApi';
 import React, { useState } from 'react'
 
 export default function Shop() {
@@ -8,6 +11,11 @@ export default function Shop() {
     const [refreshPage, setRefreshPage] = useState(false);
     const [view, setView] = useState("grid");
     const [filterOption, setFilterOption] = useState("");
+    const {data: products, isLoading, error} = useGetProductsForBuyersQuery({});
+
+    console.log(products);
+    console.log(error);
+
 
     const handleFilter = () => {
         setShowFilter(!showFilter);
@@ -89,17 +97,19 @@ export default function Shop() {
           {/* Products */}
 
           <div className="lg:h-[65vh] h-[60vh] sm:h-[55vh] overflow-y-scroll">
-            {/* {loading ? (
-              <ShopSkeletons />
+            {isLoading ? (
+              // <ShopSkeletons />
+              <div>loading...</div>
             ) : error ? (
-              <MessageBox variant="danger">{error}</MessageBox>
+              // <MessageBox variant="danger">{error}</MessageBox>
+              <div>An error occured</div>
             ) : (
               <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-3 sm:grid-cols-2">
-                {products?.data?.data?.map((item) => {
-                  return <Product item={item} key={item?.id} />;
+                {products?.data?.map((item: Product) => {
+                  return <ProductCard item={item} key={item?.id} />;
                 })}
               </div>
-            )} */}
+            )}
             {/* {loading ? (
               <LoadingBox />
             ) : error ? (

@@ -14,7 +14,7 @@ export const cartApi = baseApi.injectEndpoints({
                         data: { data },
                     } = result;
                 } catch (error: any) {
-                    // console.log(error)
+                    throw error;
                 }
             }
         }),
@@ -47,3 +47,11 @@ export const cartApi = baseApi.injectEndpoints({
         }),
     }),
 });
+
+export const {
+    useGetAllCartItemsQuery,
+    useAddToCartMutation,
+    useUpdateCartMutation,
+    useDeleteCartMutation,
+    useCreateOrderMutation
+} = cartApi;
