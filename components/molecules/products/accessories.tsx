@@ -1,42 +1,83 @@
 "use client";
-import React from 'react'
-import ProductCard from '../cards/productCard';
+import React from "react";
+import { useGetCategoryQuery } from "@/redux/services/product/category/categoryApi"; 
+import { Swiper, SwiperSlide } from 'swiper/react'; 
+import { Navigation, Pagination } from 'swiper/modules';
 
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 export default function Accessories() {
-    const slideLeft = () => {
-        let slide = document.getElementById("slide");
-        // slide.scrollLeft = slide.scrollLeft - 500;
-    };
 
+    const { data: response, error, isLoading } = useGetCategoryQuery(null);
+    if (isLoading) {
+      return <p>Loading categories...</p>;
+    }
+  
 
-    const slideRight = () => {
-        let slide = document.getElementById("slide");
-        // slide.scrollLeft = slide.scrollLeft + 500;
-    };
+    if (error) {
+      let errorMessage: string = "Unknown error occurred";
+  
+      if ("status" in error) {
+        errorMessage = `Error: ${error.status}`;
+      } else if ("message" in error) {
+        errorMessage = error.message ?? "Error occurred with no message";
+      }
+  
+      return <p>{errorMessage}</p>;
+    }
+  
 
+    console.log("Categories response:", response);
+  
+
+    const categories = response?.data || [];
+  
+
+    if (!Array.isArray(categories) || categories.length === 0) {
+      return <p>No categories available!</p>;
+    }
+  
+   
+    const baseURL = 'https://api.bitshub.africa/v1/dev'; 
+  
     return (
-        <div>
-            <div className="w-full relative">
-                Accessories
-
-                {/* <MdChevronLeft size={40} className="absolute cursor-pointer -left-14 bottom-32 opacity-50 hover:opacity-100" onClick={slideLeft} /> */}
-
-                <div id="slide" className="  flex items-center  overflow-x-scroll scroll whitespace-nowrap scroll-smooth  scrollbar-hide ">
-
-                    <div className=" flex gap-4 ">
-
-                        {/* {Array.isArray(categories.data) && categories.data?.map((item) => {
-                            return <ProductCard item={item} key={item?.id} />;
-
-                        })} */}
-
-                    </div>
-
-                </div>
-                {/* <MdChevronRight size={40} className="absolute cursor-pointer -right-14 bottom-32 opacity-50 hover:opacity-100" onClick={slideRight} /> */}
-
-            </div>
-
-        </div>
-    )
+      <Swiper
+        navigation
+        pagination
+        modules={[Navigation, Pagination]}
+        className="mySwiper"
+        slidesPerView={3} // Set the number of slides to show at once
+        spaceBetween={30} // Optional: Adjust the space between slides
+        breakpoints={{
+          640: {
+            slidesPerView: 2, // Show 2 slides on small screens
+          },
+          768: {
+            slidesPerView: 3, // Show 3 slides on medium screens
+          },
+          1024: {
+            slidesPerView: 4, // Show 4 slides on larger screens
+          },
+        }}
+      >
+        {categories.map((category) => {
+          // Construct the full image URL
+          const imgUrl = `${baseURL}${category.img_url}`; // Combine base URL with the image path
+  
+          return (
+            <SwiperSlide key={category.id}>
+              <div className="category-card p-4 border rounded-lg shadow-lg">
+                <img
+                  src={imgUrl} // Use the constructed URL for the image
+                  alt={category.category} // Use the correct field for category title
+                  className="w-full h-48 object-cover rounded-t-lg"
+                />
+                <h3 className="text-lg font-semibold mt-4">{category.category}</h3> {/* Use the correct field for title */}
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    );
 }

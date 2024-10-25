@@ -115,5 +115,6 @@ export const baseApi = createApi({
         "OrderItem",
         "Payment",
         "Shipping",
+        // "Electronics"
     ],
   });
