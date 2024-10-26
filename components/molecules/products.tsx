@@ -2,20 +2,17 @@
 
 import React, { useState } from "react";
 import ProductCard from "./cards/productCard";
+import { useGetProductsForBuyersQuery } from "@/redux/services/product/productAPIs/productApi";
+import { Product } from "@/@types";
 
 export default function Products() {
   const [refreshPage, setRefreshPage] = useState(false);
-  const images = [
-    "/images/products/iphone12.jpg",
-    "/images/products/iphone12.jpg",
-    "/images/products/iphone15.jpg",
-    "/images/products/infinix.jpg",
-  ];
+  const {data: products, isLoading, error} = useGetProductsForBuyersQuery({});
   return (
     <div>
       <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-2 grid-cols-1">
-        {images.map((img, i) => (
-          <ProductCard key={i} img={img} />
+        {products.data.map((item: Product) => (
+          <ProductCard key={item.id} item={item} />
         ))}
       </div>
       {/* {
