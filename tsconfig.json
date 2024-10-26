@@ -12,7 +12,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "https://api.bitshub.africa/v1/dev",
+    "baseUrl": "./",
     "plugins": [
       {
         "name": "next"
