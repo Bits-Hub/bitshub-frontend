@@ -2,24 +2,46 @@ import Link from "next/link";
 import React from "react";
 import Rating from "./rating";
 import { Button } from "@/components/atoms/ui/button";
-import { ProductCardProps } from "@/@types";
+import { Product } from "@/@types";
 import Image from "next/image";
-export default function ProductCard({ img }: ProductCardProps) {
-  // props
-  // const product = { id: item.id, quantity: 1 };
+import { useRouter } from "next/navigation";
+import { useAddToCartMutation } from "@/redux/services/cart/cartApi";
+import { toast } from "sonner";
+export default function ProductCard({ item }: {item: Product}) {
+  const router = useRouter();
+  const [addToCart, {error: AddtoCartError, isSuccess, isLoading}] = useAddToCartMutation();
+  const handleAddToCart = async () => {
+    toast.loading("Adding to cart");
+    try {
+      const res = await addToCart({product_id: item?.id, quantity: 1});
+      if (res.data) {
+        console.log("added to cart", res.data);
+      }
+      toast.dismiss();
+      toast.success("Product added to cart");
+    } catch (error: any) {
+      console.log(error);
+      toast.dismiss();
+      toast.error("An error occurred");
+    }
+  }
   return (
     <div>
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="h-48 w-full">
-          <a href="#">
+          <div 
+          onClick={()=> {
+            router.push(`/product-details?id=${item?.id}`)
+          }}
+          >
             <Image
               width={200}
               height={200}
               className="mx-auto h-full"
-              src={img}
+              src={item?.img}
               alt="this is a product"
             />
-          </a>
+          </div>
         </div>
         <div className="pt-6">
           <div className="mb-4 flex items-center justify-between gap-4">
@@ -100,12 +122,14 @@ export default function ProductCard({ img }: ProductCardProps) {
             </div>
           </div>
 
-          <a
-            href="#"
+          <div
+            onClick={()=> {
+              router.push(`/product-details?id=${item?.id}`)
+            }}
             className="text-lg font-[500] leading-tight text-gray-900 hover:underline dark:text-white"
           >
-            Apple iMac 27&quot;, 1TB HDD, Retina 5K Display, M3 Max
-          </a>
+           {item?.name}
+          </div>
 
           <div className="mt-1 flex items-center gap-2">
             <div className="flex items-center">
@@ -173,11 +197,12 @@ export default function ProductCard({ img }: ProductCardProps) {
 
           <div className="mt-4 flex items-center justify-between gap-4">
             <p className="text-[22px] font-[600] leading-tight text-gray-900 dark:text-white">
-              $1,699
+              ${item?.amount}
             </p>
 
             <Button
               type="button"
+              onClick={handleAddToCart}
               className="inline-flex items-center rounded-lg bg-orange-500 px-4 py-1.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
               <svg
@@ -209,7 +234,7 @@ export default function ProductCard({ img }: ProductCardProps) {
     //     <div className="relative" style={{ height: "150px" }}>
     //       <div className="border w-[100%] h-[150px] overflow-hidden">
     //         {/* <LazyLoadImage
-    //         src={item.img_url}
+    //         src={item?.img_url}
     //         style={{ width: "100%", height: "100%" }}
     //         effect="blur"
     //         alt="productImage"
@@ -243,22 +268,22 @@ export default function ProductCard({ img }: ProductCardProps) {
     //     >
     //       <Link
     //         href={
-    //           // `/product-details/${item.slug}`
+    //           // `/product-details/${item?.slug}`
     //           ""
     //         }
     //       >
     //         <p className="uppercase font-medium text-l text-gray-800 hover:text-primary transition">
-    //           {/* {item.name} */}
+    //           {/* {item?.name} */}
     //           item name
     //         </p>
     //       </Link>
     //       <p className="text-xs text-gray-500 mb-2">
-    //         {/* {item.description.slice(0, 33)} ... */}
+    //         {/* {item?.description.slice(0, 33)} ... */}
     //         item description...
     //       </p>
     //       <div className="flex items-baseline mb-1 space-x-2 font-roboto">
     //         <p className="text-l text-primary font-semibold">
-    //           {/* ₦{item.amount} */}
+    //           {/* ₦{item?.amount} */}
     //           price
     //         </p>
     //       </div>
