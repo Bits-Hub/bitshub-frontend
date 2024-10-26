@@ -11,7 +11,7 @@ export default function Products() {
   return (
     <div>
       <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-2 grid-cols-1">
-        {products.data.map((item: Product) => (
+        {products?.data?.map((item: Product) => (
           <ProductCard key={item.id} item={item} />
         ))}
       </div>
