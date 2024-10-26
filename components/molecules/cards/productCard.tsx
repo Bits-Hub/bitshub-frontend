@@ -9,11 +9,16 @@ import { useAddToCartMutation } from "@/redux/services/cart/cartApi";
 import { toast } from "sonner";
 export default function ProductCard({ item }: {item: Product}) {
   const router = useRouter();
-  const [addToCart, {error: AddtoCartError, isSuccess, isLoading}] = useAddToCartMutation();
+  const [addToCart, {error, isSuccess, isLoading}] = useAddToCartMutation();
   const handleAddToCart = async () => {
     toast.loading("Adding to cart");
     try {
-      const res = await addToCart({product_id: item?.id, quantity: 1});
+      const res = await addToCart({
+        product_id: item?.id,
+         quantity: 1,
+         product_variant_id: item?.product_variant_id,
+         product_variant_spec_id: item?.product_variant_spec_id,
+        });
       if (res.data) {
         console.log("added to cart", res.data);
       }
@@ -38,7 +43,7 @@ export default function ProductCard({ item }: {item: Product}) {
               width={200}
               height={200}
               className="mx-auto h-full"
-              src={item?.img}
+              src="/images/products/iphone15.jpg"
               alt="this is a product"
             />
           </div>

@@ -23,6 +23,8 @@ export type CategoryProps =  {
     updated_at: string;
     amount: string;
     img: string;
+    product_variant_id: string;
+    product_variant_spec_id: string;
     store: {
       id: string;
       brand_name: string;
@@ -37,3 +39,26 @@ export type CategoryProps =  {
       updated_at: string;
   } 
 }
+
+export interface ProductDetails {
+  description: string;
+  name: string;
+  slug: string;
+}
+
+export interface Cart { 
+  id: string;
+  created_at: string;
+  color: string;
+  amount: string;
+  product_details: ProductDetails;
+  product_id: string;
+  product_variant_id: string;
+  product_variant_spec_id: string;
+  quantity: number;
+  size: string;
+  store_id: string;
+  updated_at: string;
+  user_id: string;
+  variant_img_url: string;
+} 

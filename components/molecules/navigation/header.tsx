@@ -9,14 +9,16 @@ import { HeartIcon, UserIcon } from "@heroicons/react/24/outline";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/features/root-reducer";
+import { generateInitials } from "@/lib/utils";
 
 export default function Header() {
   const userInfo = useSelector((state: RootState) => state.auth);
+
   console.log(userInfo);
   return (
     <div>
       <TopBar />
-      <div className="py-4 shadow-sm bg-white lg:mx-32">
+      <div className="py-4 shadow-sm bg-white lg:mx-10">
         <div className="container flex items-center justify-between ">
           <Link href="/home">
             <Image
@@ -61,7 +63,7 @@ export default function Header() {
               )} */}
             </Link>
             <Link
-              href="/login?redirect=/cart/:id"
+              href="/cart"
               className="text-center text-gray-700 hover:text-primary group transition relative"
             >
               <div className="text-xl md:text-2xl">
@@ -82,16 +84,16 @@ export default function Header() {
                 </p>
                 <p className="hidden md:block text-xs leading-3">
                   {/* {userInfo?.name || "Account"} */}
-                  {/* todo: update this to show user name */}
-                  Account
+                  {/* const initials = generateInitials("John Doe"); */}
+                  {userInfo?.first_name ? generateInitials(`${userInfo.first_name} ${userInfo.last_name}`) : "Account"}
                 </p>
               </div>
               <div className="absolute w-[15rem] right-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-50">
-                {/* {userInfo ? (
-                                    <p className="px-6 py-3">{`Welcome, ${userInfo.data.first_name}`}</p>
+                {userInfo ? (
+                                    <p className="px-6 py-3">{`Welcome, ${userInfo.first_name}`}</p>
                                 ) : (
                                     ""
-                                )} */}
+                                )}
 
                 <Link
                   href="/manage-account"
