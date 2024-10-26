@@ -69,8 +69,10 @@ export default function ProductDetails() {
                   </div>
                 ) : (
                   <Image
+                  width={400}
+                  height={400}
                     // src={currentImage?.url}
-                    src="https://res.cloudinary.com/djvjxp"
+                    src="/images/products/iphone15.jpg"
                     alt="test"
                     className="p-2 border"
                   />
@@ -80,6 +82,8 @@ export default function ProductDetails() {
                 {/* {imageUrls?.map((items) => (
                   <div>
                     <Image
+                    width={400}
+                  height={400}
                       key={items.index}
                       src={items.url}
                       alt="test"
@@ -444,7 +448,9 @@ export default function ProductDetails() {
               <div className="flex py-4 gap-4 w-[70%]">
                 <div className="w-[80px]">
                   <Image
-                    src="https://png.pngtree.com/png-vector/20200329/ourlarge/pngtree-character-avatar-of-businessman-with-beard-png-image_2166772.jpg"
+                  width={400}
+                  height={400}
+                   src="/images/products/iphone15.jpg"
                     alt=""
                     className="w-full border rounded"
                   />
@@ -465,7 +471,9 @@ export default function ProductDetails() {
               <div className="flex py-4 gap-4 w-[70%]">
                 <div className="w-[80px]">
                   <Image
-                    src="https://png.pngtree.com/png-vector/20200329/ourlarge/pngtree-character-avatar-of-businessman-with-beard-png-image_2166772.jpg"
+                  width={400}
+                  height={400}
+                    src="/images/products/iphone15.jpg"
                     alt=""
                     className="w-full border rounded"
                   />
@@ -486,7 +494,9 @@ export default function ProductDetails() {
               <div className="flex py-4 gap-4 w-[70%]">
                 <div className="w-[80px]">
                   <Image
-                    src="https://png.pngtree.com/png-vector/20200329/ourlarge/pngtree-character-avatar-of-businessman-with-beard-png-image_2166772.jpg"
+                  width={400}
+                  height={400}
+                   src="/images/products/iphone15.jpg"
                     alt=""
                     className="w-full border rounded"
                   />
