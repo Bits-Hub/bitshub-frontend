@@ -3,6 +3,7 @@
 import Rating from "@/components/molecules/cards/rating";
 import Products from "@/components/molecules/products";
 import { useGetSingleProductForBuyerQuery } from "@/redux/services/product/productAPIs/productApi";
+import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -67,7 +68,7 @@ export default function ProductDetails() {
                     loading...
                   </div>
                 ) : (
-                  <img
+                  <Image
                     // src={currentImage?.url}
                     src="https://res.cloudinary.com/djvjxp"
                     alt="test"
@@ -78,7 +79,7 @@ export default function ProductDetails() {
               <div className="grid grid-cols-5 gap-4 mt-4">
                 {/* {imageUrls?.map((items) => (
                   <div>
-                    <img
+                    <Image
                       key={items.index}
                       src={items.url}
                       alt="test"
@@ -165,7 +166,7 @@ export default function ProductDetails() {
                       htmlFor="size-13"
                       className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
                     >
-                      13"
+                      13&quot;
                     </label>
                   </div>
                   <div className="size-selector">
@@ -179,7 +180,7 @@ export default function ProductDetails() {
                       htmlFor="size-15"
                       className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
                     >
-                      15"
+                      15&quot;
                     </label>
                   </div>
                   <div className="size-selector">
@@ -193,7 +194,7 @@ export default function ProductDetails() {
                       htmlFor="size-17"
                       className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
                     >
-                      17"
+                      17&quot;
                     </label>
                   </div>
                 </div>
@@ -442,7 +443,7 @@ export default function ProductDetails() {
             <div className={!showReviews ? "hidden" : ""}>
               <div className="flex py-4 gap-4 w-[70%]">
                 <div className="w-[80px]">
-                  <img
+                  <Image
                     src="https://png.pngtree.com/png-vector/20200329/ourlarge/pngtree-character-avatar-of-businessman-with-beard-png-image_2166772.jpg"
                     alt=""
                     className="w-full border rounded"
@@ -463,7 +464,7 @@ export default function ProductDetails() {
               </div>
               <div className="flex py-4 gap-4 w-[70%]">
                 <div className="w-[80px]">
-                  <img
+                  <Image
                     src="https://png.pngtree.com/png-vector/20200329/ourlarge/pngtree-character-avatar-of-businessman-with-beard-png-image_2166772.jpg"
                     alt=""
                     className="w-full border rounded"
@@ -484,7 +485,7 @@ export default function ProductDetails() {
               </div>
               <div className="flex py-4 gap-4 w-[70%]">
                 <div className="w-[80px]">
-                  <img
+                  <Image
                     src="https://png.pngtree.com/png-vector/20200329/ourlarge/pngtree-character-avatar-of-businessman-with-beard-png-image_2166772.jpg"
                     alt=""
                     className="w-full border rounded"
