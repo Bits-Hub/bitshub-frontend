@@ -17,7 +17,7 @@ export default function Products() {
       </div>
       {/* {
         false
-    //   loading
+    //   loadingx
        ? (
         // <ProductSkeletons />
       ) : error ? (
